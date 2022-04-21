@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from sudokusolver import valid_pose, solve, find_empty
+from sudokusolver import myValidPose, solve, find_empty
 from copy import deepcopy
 from sys import exit
 import pygame
@@ -21,7 +21,7 @@ def generate_sudoku_board():
             for j in range(9):
                 if random.randint(1, 10) >= 5:
                     board[i][j] = random.randint(1, 9) 
-                    if valid_pose(board, (i, j), board[i][j]):
+                    if myValidPose(board, (i, j), board[i][j]):
                         continue
                     else:
                         board[i][j] = 0
@@ -120,7 +120,7 @@ class Board:
             return True
 
         for nums in range(9):
-            if valid_pose(self.board, (empty[0], empty[1]), nums + 1):
+            if myValidPose(self.board, (empty[0], empty[1]), nums + 1):
                 self.board[empty[0]][empty[1]] = nums + 1
                 self.tiles[empty[0]][empty[1]].value = nums + 1
                 self.tiles[empty[0]][empty[1]].correct = True
